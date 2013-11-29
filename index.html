@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Modern Tools for Front-end Web Development</title>
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h2>Modern Tools for Front-End Development</h2>
+        </section>
+        <section id="me">
+          <h2>Who Am I?</h2>
+
+          <ul class="fragments small">
+            <li class="fragment">Aaron Froehlich</li>
+            <li class="fragment">Drupal Developer, ILR School</li>
+            <li class="fragment">Formerly worked for <a target="_blank" href="http://singlebrook.com">Singlebrook</a> and <a target="_blank" href="http://mindspace.net">Mindspace</a></li>
+            <li class="fragment">a-fro on <a target="_blank" href="http://github.com/a-fro">GitHub</a>, <a href="https://drupal.org/user/2420892">Drupal.org</a></li>
+            <li class="fragment">Co-Organizer of the <a target="_blank" href="http://www.meetup.com/ithaca-drupal">Ithaca Drupal Meetup</a></li>
+          </ul>
+        </section>
+        <section id="history">
+          <section>
+            <h3>Front-end developers have been at a disadvantage</h3>
+            <ol>
+              <li class="fragment">Browser inconsistencies were a major pain
+                <ul>
+                  <small><li class="fragment">Stifled innovation</li></small>
+                </ul>
+              </li>
+              <li class="fragment">CSS is "Easy"</li>
+                <ul>
+                  <small><li class="fragment">Bidding against "the nephew"</li></small>
+                </ul>
+              <li class="fragment">Properties rather than programming
+                <ul>
+                  <small><li class="fragment">Lack of variables, functions, objects</li></small>
+                </ul>
+              </li>
+              <li class="fragment">Proliferation of devices</li>
+            </ol>
+          </section>
+          <section id="past-web" data-source="http://bradfrostweb.com/blog/web/responsive-web-design-missing-the-point/" data-cite="Brad Frost">
+            <img src="images/past.png" alt="This is not the web">
+          </section>
+          <section id="present-web" data-source="http://bradfrostweb.com/blog/web/responsive-web-design-missing-the-point/" data-cite="Brad Frost">
+            <img src="images/present.png" alt="This is the web">
+          </section>
+          <section id="future-web" data-source="http://bradfrostweb.com/blog/web/responsive-web-design-missing-the-point/" data-cite="Brad Frost">
+            <img src="images/future.png" alt="This will be the web">
+          </section>
+        </section>
+
+        <section id="new-tools">
+          <h3>New Tools for New Challenges</h3>
+          <ol>
+            <li class="fragment">CSS Pre-processors
+              <ul>
+                <li class="fragment"><a target="_blank" href="http://sass-lang.com/">Sass</a> and <a target="_blank" href="http://lesscss.org/">Less</a></li>
+              </ul>
+            </li>
+            <li class="fragment">Polyfill/compatibility libraries
+              <ul>
+                <li class="fragment"><a target="_blank" href="https://github.com/Modernizr/Modernizr">Modernizr</a> and <a target="_blank" href="http://compass-style.org/">Compass</a></li>
+              </ul>
+            </li>
+            <li class="fragment">Responsive Development Tools
+              <ul>
+                <li class="fragment"><a href="http://getfirebug.com/" target="_blank">Firebug</a>, <a href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm" target="_blank">Web Developer Toolbar</a> and <a href="http://livereload.com/" target="_blank">LiveReload</a></li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <section id="installing-sass">
+          <h3>Installing Sass</h3>
+          <p>There are a number of 3rd party apps to support CSS preprocessors</p>
+          <ul>
+            <li class="fragment roll-in"><a target="_blank" href="http://incident57.com/codekit/">Code Kit</a></li>
+            <li class="fragment roll-in"><a target="_blank" href="http://compass.kkbox.com/">Compass.app</a></li>
+            <li class="fragment roll-in"><a target="_blank" href="http://incident57.com/less/">Less.app</a></li>
+            <li class="fragment roll-in">Development IDE's like <a target="_blank" href="http://panic.com/Coda/">Coda</a> and <a target="_blank" href="http://www.jetbrains.com/phpstorm/">PhpStorm</a></li>
+          </ul>
+          <p>&nbsp;</p>
+          <p class="fragment roll-in">We're going to use Ruby</p>
+        </section>
+        <section id="ruby-gems">
+          <h3>Using Ruby Gems</h3>
+          <pre><code data-trim contenteditable>
+$ gem install bundler
+          </code></pre>
+          <p class="fragment left"><small>Gemfile:</small></p>
+          <pre class="fragment"><code data-trim contenteditable>
+source "https://rubygems.org"
+
+gem 'guard-sass'
+gem 'compass'
+gem 'guard-livereload'
+          </code></pre>
+          <pre class="fragment"><code data-trim contenteditable>
+$ bundle install
+          </code></pre>
+        </section>
+        <section id="drupal_streamline">
+          <h3>Using <a target="_blank" href="https://github.com/singlebrook/drupal_streamline">Drupal Streamline</a></h3>
+          <ul>
+            <li class="fragment">Includes Sass, Compass and LiveReload</li>
+            <li class="fragment">Leverages Guard</li>
+          </ul>
+          <pre class="fragment"><code data-trim contenteditable>
+# More info at https://github.com/guard/guard#readme
+
+guard 'sass',
+  :input => 'docroot/sites/all/themes/wscu_theme/scss',
+  :output => 'docroot/sites/all/themes/wscu_theme/css',
+  :compass => true,
+  :style => :compressed
+          </code></pre>
+        </section>
+        <section id="sass-features">
+        <h3>Sass Features</h3>
+        <ol>
+          <li class="fragment roll-in">Partials</li>
+          <li class="fragment roll-in">Variables</li>
+          <li class="fragment roll-in">Nested inheritance</li>
+          <li class="fragment roll-in">Extending Classes</li>
+          <li class="fragment roll-in">Functions/Mixins</li>
+          <li class="fragment roll-in">Operations</li>
+        </ol>
+        </section>
+        <section>
+          <pre><code data-trim contenteditable>
+function linkify( selector ) {
+  if( supports3DTransforms ) {
+
+    var nodes = document.querySelectorAll( selector );
+
+    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
+      var node = nodes[i];
+
+      if( !node.className ) ) {
+        node.className += ' roll';
+      }
+    };
+  }
+}
+          </code></pre>
+        </section>
+
+
+
+        <section>
+          <h2>Spectacular image!</h2>
+          <a class="image" href="http://lab.hakim.se/meny/" target="_blank">
+            <img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
+          </a>
+        </section>
+
+        <section>
+          <h2>Export to PDF</h2>
+          <p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
+          <iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
+          <script>
+            document.getElementById('slideshare').attributeName = 'allowfullscreen';
+          </script>
+        </section>
+
+
+
+        <section>
+          <h1>THE END</h1>
+        </section>
+
+      </div>
+      <div id="pagecounter"></div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+    <script src="js/pages.js"></script>
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
